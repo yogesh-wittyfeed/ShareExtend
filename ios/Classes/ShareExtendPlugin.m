@@ -34,6 +34,20 @@
             if ([shareType isEqualToString:@"text"]) {
                 [self share:array atSource:originRect withSubject:subject];
                 result(nil);
+            }
+            
+            else if ([shareType isEqualToString:@"whatsapp"]) {
+            
+                NSString * msg = @"I Love STAGE App";
+                NSString * urlWhats = [NSString stringWithFormat:@"whatsapp://send?text=%@",msg];
+                NSURL * whatsappURL = [NSURL URLWithString:[urlWhats stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+                    [[UIApplication sharedApplication] openURL: whatsappURL];
+                } else {
+                    // Cannot open whatsapp
+                }
+            
+            
             }  else if ([shareType isEqualToString:@"image"]) {
                 NSMutableArray * imageArray = [[NSMutableArray alloc] init];
                 for (NSString * path in array) {
@@ -42,6 +56,7 @@
                 }
                 [self share:imageArray atSource:originRect withSubject:subject];
             } else {
+            
                 NSMutableArray * urlArray = [[NSMutableArray alloc] init];
                 for (NSString * path in array) {
                     NSURL *url = [NSURL fileURLWithPath:path];
