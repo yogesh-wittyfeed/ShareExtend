@@ -58,12 +58,14 @@
                         [urlArray addObject:url];
                     }
                     
+                    NSLog(@"You device have whatsapp.");
                     
                      NSURL *URL = [[NSBundle mainBundle] URLForResource:@"Your PDF Name" withExtension:@"pdf"];
                        UIDocumentInteractionController *documentInteractionController =[UIDocumentInteractionController interactionControllerWithURL:url];
                        documentInteractionController.UTI = @"net.whatsapp.movie";
                        documentInteractionController.delegate = self;
-                       [documentInteractionController presentPreviewAnimated:YES];
+                       //[documentInteractionController presentPreviewAnimated:YES];
+                    [documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES];
             
                 } else {
                     NSLog(@"You device do not have whatsapp.");
