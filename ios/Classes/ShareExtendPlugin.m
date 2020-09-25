@@ -38,16 +38,38 @@
             
             else if ([shareType isEqualToString:@"whatsapp"]) {
             
-                NSString * msg = @"I Love STAGE App";
-                NSString * urlWhats = [NSString stringWithFormat:@"whatsapp://send?text=%@",msg];
-                NSURL * whatsappURL = [NSURL URLWithString:[urlWhats stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
-                    [[UIApplication sharedApplication] openURL: whatsappURL];
+//                NSString * msg = @"I Love STAGE App";
+//                NSString * urlWhats = [NSString stringWithFormat:@"whatsapp://send?text=%@",msg];
+//                NSURL * whatsappURL = [NSURL URLWithString:[urlWhats stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+//                    [[UIApplication sharedApplication] openURL: whatsappURL];
+//                } else {
+//                    // Cannot open whatsapp
+//                }
+                
+                NSURL *urlOfWhatsApp = [NSURL URLWithString:@"whatsapp://"];
+                if ([[UIApplication sharedApplication] canOpenURL:urlOfWhatsApp]) { //check app can open whatsapp or not.
+                    
+                    
+                    NSMutableArray * urlArray = [[NSMutableArray alloc] init];
+                    NSURL *url;
+                    for (NSString * path in array) {
+                         url = [NSURL fileURLWithPath:path];
+                        [urlArray addObject:url];
+                    }
+                    
+                    
+                     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"Your PDF Name" withExtension:@"pdf"];
+                       UIDocumentInteractionController *documentInteractionController =[UIDocumentInteractionController interactionControllerWithURL:url];
+                       documentInteractionController.UTI = @"net.whatsapp.movie";
+                       documentInteractionController.delegate = self;
+                       [documentInteractionController presentPreviewAnimated:YES];
+            
                 } else {
-                    // Cannot open whatsapp
+                    NSLog(@"You device do not have whatsapp.");
                 }
             
-            
+                
             }  else if ([shareType isEqualToString:@"image"]) {
                 NSMutableArray * imageArray = [[NSMutableArray alloc] init];
                 for (NSString * path in array) {
@@ -69,6 +91,11 @@
             result(FlutterMethodNotImplemented);
         }
     }];
+    
+}
+
+- (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller {
+    return self;
 }
 
 + (void)share:(NSArray *)sharedItems atSource:(CGRect)origin withSubject:(NSString *) subject {
