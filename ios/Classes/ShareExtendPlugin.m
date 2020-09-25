@@ -47,30 +47,38 @@
 //                    // Cannot open whatsapp
 //                }
                 
-                NSURL *urlOfWhatsApp = [NSURL URLWithString:@"whatsapp://"];
-                if ([[UIApplication sharedApplication] canOpenURL:urlOfWhatsApp]) { //check app can open whatsapp or not.
+//                 NSURL *urlOfWhatsApp = [NSURL URLWithString:@"whatsapp://"];
+//                 if ([[UIApplication sharedApplication] canOpenURL:urlOfWhatsApp]) { //check app can open whatsapp or not.
                     
                     
-                    NSMutableArray * urlArray = [[NSMutableArray alloc] init];
-                    NSURL *url;
-                    for (NSString * path in array) {
-                         url = [NSURL fileURLWithPath:path];
-                        [urlArray addObject:url];
-                    }
+//                     NSMutableArray * urlArray = [[NSMutableArray alloc] init];
+//                     NSURL *url;
+//                     for (NSString * path in array) {
+//                          url = [NSURL fileURLWithPath:path];
+//                         [urlArray addObject:url];
+//                     }
                     
-                    NSLog(@"You device have whatsapp.");
+//                     NSLog(@"You device have whatsapp.");
                     
-                     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"Your PDF Name" withExtension:@"pdf"];
-                       UIDocumentInteractionController *documentInteractionController =[UIDocumentInteractionController interactionControllerWithURL:url];
-                       documentInteractionController.UTI = @"net.whatsapp.movie";
-                       documentInteractionController.delegate = self;
-                       //[documentInteractionController presentPreviewAnimated:YES];
-                    [documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES];
+//                      NSURL *URL = [[NSBundle mainBundle] URLForResource:@"Your PDF Name" withExtension:@"pdf"];
+//                        UIDocumentInteractionController *documentInteractionController =[UIDocumentInteractionController interactionControllerWithURL:url];
+//                        documentInteractionController.UTI = @"net.whatsapp.movie";
+//                        documentInteractionController.delegate = self;
+//                        //[documentInteractionController presentPreviewAnimated:YES];
+//                     [documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES];
             
-                } else {
-                    NSLog(@"You device do not have whatsapp.");
+//                 } else {
+//                     NSLog(@"You device do not have whatsapp.");
+//                 }
+            
+                
+                 NSMutableArray * urlArray = [[NSMutableArray alloc] init];
+                for (NSString * path in array) {
+                    NSURL *url = [NSURL fileURLWithPath:path];
+                    [urlArray addObject:url];
                 }
-            
+                [self share:urlArray atSource:originRect withSubject:subject];
+                result(nil);
                 
             }  else if ([shareType isEqualToString:@"image"]) {
                 NSMutableArray * imageArray = [[NSMutableArray alloc] init];
