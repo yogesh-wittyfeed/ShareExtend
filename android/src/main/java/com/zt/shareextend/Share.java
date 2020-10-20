@@ -80,6 +80,9 @@ public class Share {
 
             if ("image".equals(type)) {
                 shareIntent.setType("image/*");
+            } else if ("whatsapp_image".equals(type)) {
+                shareIntent.setType("image/*");
+                shareIntent.setPackage("com.whatsapp");
             } else if ("whatsapp_video".equals(type)) {
                 shareIntent.setType("video/*");
                 shareIntent.setPackage("com.whatsapp");
