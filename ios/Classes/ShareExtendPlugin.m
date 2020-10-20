@@ -38,14 +38,14 @@
             
             else if ([shareType isEqualToString:@"whatsapp"]) {
             
-//                NSString * msg = @"I Love STAGE App";
-//                NSString * urlWhats = [NSString stringWithFormat:@"whatsapp://send?text=%@",msg];
-//                NSURL * whatsappURL = [NSURL URLWithString:[urlWhats stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//                if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
-//                    [[UIApplication sharedApplication] openURL: whatsappURL];
-//                } else {
-//                    // Cannot open whatsapp
-//                }
+               NSString * msg = subject;
+               NSString * urlWhats = [NSString stringWithFormat:@"whatsapp://send?text=%@",msg];
+               NSURL * whatsappURL = [NSURL URLWithString:[urlWhats stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+               if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+                   [[UIApplication sharedApplication] openURL: whatsappURL];
+               } else {
+                   // Cannot open whatsapp
+               }
                 
 //                 NSURL *urlOfWhatsApp = [NSURL URLWithString:@"whatsapp://"];
 //                 if ([[UIApplication sharedApplication] canOpenURL:urlOfWhatsApp]) { //check app can open whatsapp or not.
